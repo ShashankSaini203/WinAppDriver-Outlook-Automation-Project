@@ -1,4 +1,4 @@
-### Outlook Automation using WinAppDriver in c#
+### Outlook Automation using WinAppDriver with c#
 This repository is dedicated to a project on automating Microsoft Outlook Application using WinAppDriver in Visual Studio with C#.
 This code is developed in an effort to illustrate the uses and benefits of WinAppDriver(Windows Application Driver) for Windows Automation. 
 In this code I have used MSTest testing framework to run TestMethods.
