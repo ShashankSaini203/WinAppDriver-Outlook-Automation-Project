@@ -17,7 +17,7 @@ namespace OutlookAutomation
 
         private const string WindowsApplicationDriverUrl = "http://127.0.0.1:4723";
         private const string OutlookAppId = @"C:\Program Files (x86)\Microsoft Office\root\Office16\OUTLOOK.EXE";
-        static bool outlookWindow=false;
+        static bool outlookWindow = false;
         public static Process WinApp;
 
         public static WindowsDriver<WindowsElement> outlookSession;
@@ -33,20 +33,20 @@ namespace OutlookAutomation
             {
                 outlookWindow = desktopSession.FindElementByClassName("rctrl_renwnd32").Displayed;
             }
-            catch(WebDriverException)
+            catch (WebDriverException)
             {
                 outlookWindow = false;
             }
-            
-            
+
+
             if (!outlookWindow)
             {
-                
+
                 AppiumOptions outlookCapabilities = new AppiumOptions();
                 outlookCapabilities.AddAdditionalCapability("app", OutlookAppId);
                 outlookSession = new WindowsDriver<WindowsElement>(new Uri(WindowsApplicationDriverUrl), outlookCapabilities);
                 outlookSession.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
-                Thread.Sleep(TimeSpan.FromSeconds(2));
+                Thread.Sleep(TimeSpan.FromSeconds(10));
             }
             else
             {
@@ -65,9 +65,10 @@ namespace OutlookAutomation
             string OutlookTopLevelWindowHandle = OutlookTopLevelWindowHandle = (int.Parse(outlookWindowElement.GetAttribute("NativeWindowHandle"))).ToString("x");
             AppiumOptions outlookCapabilities = new AppiumOptions();
             outlookCapabilities.AddAdditionalCapability("appTopLevelWindow", OutlookTopLevelWindowHandle);
+            outlookCapabilities.AddAdditionalCapability("deviceName", "DESKTOP-SHASHANK");
             outlookSession = new WindowsDriver<WindowsElement>(new Uri(WindowsApplicationDriverUrl), outlookCapabilities);
             Thread.Sleep(TimeSpan.FromSeconds(2));
-            
+
         }
 
         public static void TearDown()
